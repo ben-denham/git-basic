@@ -75,12 +75,12 @@
 							# Make sure the server has a working SSH daemon running
 							<br>
 							<br># Set up shared git repo
-							<br>mkdir /tmp/test3.git
-							<br>cd /tmp/test3.git
+							<br>mkdir /c/test3.git
+							<br>cd /c/test3.git
 							<br>git init --bare
-							<br>cd /tmp
-							<br>git clone /tmp/test3.git /tmp/work
-							<br>cd /tmp/work
+							<br>cd /c
+							<br>git clone /c/test3.git /c/work
+							<br>cd /c/work
 							<br>echo 'evanwashere' > evan.txt
 							<br>git add  evan.txt
 							<br>git commit -m 'initial commit - one file'
@@ -185,10 +185,10 @@
 						### Create a new repository
 						```git init```
 						```bash
-						$ mkdir /tmp/test
+						$ mkdir /c/test
 						```
 						```bash
-						$ cd /tmp/test
+						$ cd /c/test
 						```
 						```bash
 						$ git init
@@ -237,7 +237,7 @@
 						```
 						```bash
 						# If you have a favourite editor.
-						$ git config --global core.editor gedit
+						$ git config --global core.editor notepad
 						```
 						```bash
 						# If you will be working on windows, but need to deal with unix
@@ -253,7 +253,7 @@
 						Note:
 						These settings will override the global settings
 
-						- but only within the current repository (which is /tmp/test)
+						- but only within the current repository (which is /c/test)
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
 						### Accessing the configuration settings
@@ -267,7 +267,7 @@
 						```
 						..or just edit the files
 						```bash
-						$ gedit ~/.gitconfig /tmp/test/.git/config
+						$ notepad ~/.gitconfig /c/test/.git/config
 						```
 					</section>
 				</section>
@@ -399,7 +399,7 @@
 						```
 						You can have an easier editor...
 						```bash
-						$ EDITOR=gedit git commit -a
+						$ EDITOR=notepad git commit -a
 						```
 						You don't have to use an editor at all...
 						```bash
@@ -488,7 +488,7 @@
 						### Managing Files - ignore them
 						```bash
 						# Add a line that conatins '*.swp'
-						$ gedit .gitignore
+						$ notepad .gitignore
 						```
 						```bash
 						$ git status
@@ -818,7 +818,7 @@
 
 						We'll just fix it by editing the file
 						```bash
-						$ gedit silly-script.pl
+						$ notepad silly-script.pl
 						$ cat silly-script.pl
 						New, different value for data
 						```
@@ -886,24 +886,33 @@
 						...but normally, you want to join in with an existing project
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
+						### Lets get set up for Coles development
+						```bash
+						# Generate an SSH key pair
+						$ ssh-keygen
+						```
+						```bash
+						# Copy from here...
+						$ notepad /h/.ssh/id_rsa.pub
+						```
+						```bash
+						# Paste here
+						$ http://lpdepapp.cmltd.net.au/
+						```
+					</section>
+					<section data-markdown data-separator-notes="^Note:">
 						### Clone an existing repository
 						In practise, you're more likely to use ```git clone```.
 
-						To check out the source code of a random project:
+						To check out the source code of an example project:
 						```bash
-						$ cd /tmp
+						$ cd /c
 						```
 						```bash
-						$ git clone https://github.com/catalyst-training/git-basic
-						Cloning into git-basic...
-						remote: Counting objects: 90, done.
-						remote: Compressing objects: 100% (43/43), done.
-						remote: Total 90 (delta 44), reused 90 (delta 44)
-						Receiving objects: 100% (90/90), 31.62 KiB, done.
-						Resolving deltas: 100% (44/44), done.
+						$ git clone git@lpdepapp.cmltd.net.au:/training/git_training.git
 						```
 						```bash
-						$ cd git-basic
+						$ cd git_training
 						```
 						```bash
 						$ ls
@@ -949,7 +958,7 @@
 						You can see all branches (including the remote ones) with the
 						```git branch``` command
 						```bash
-						$ cd /tmp/git-basic/
+						$ cd /c/git-basic/
 						$ git branch -a
 						* master
 						  remotes/origin/master
@@ -1072,14 +1081,12 @@
 					<section data-markdown data-separator-notes="^Note:">
 						### Now we can try it out
 						```bash
-						# Clone a new repository
-						$ cd /tmp
-						$ git clone $IP:/tmp/test3.git
-						$ cd /tmp/test3
+						# Make sure you are working on the right project
+						$ cd /c/git_training
 						```
 						```bash
 						# Create a new file (and commit)
-						$ gedit $YOURNAME.txt
+						$ notepad $YOURNAME.txt
 						$ git add $YOURNAME.txt
 						$ git commit
 						```
@@ -1397,9 +1404,9 @@
 						#### Solution
 						```bash
 						# Clone the repository
-						$ cd /tmp
+						$ cd /c
 						$ git clone https://github.com/catalyst-training/example1.git
-						$ cd /tmp/example1
+						$ cd /c/example1
 
 						# Make a new branch (at the point we want to change)
 						$ git checkout -b release-1 release-1-0
@@ -1434,9 +1441,9 @@
 						####	Solution
 						```bash
 						# Clone the repository
-						$ cd /tmp
+						$ cd /c
 						$ git clone https://github.com/catalyst-training/example2.git
-						$ cd /tmp/example2
+						$ cd /c/example2
 						```
 						```bash
 						# Work out what we want to do
@@ -1496,7 +1503,7 @@
 						### Problem 3
 						####	Solution
 						```bash
-						$ cd /tmp/example2
+						$ cd /c/example2
 
 						# Add another remote!
 						$ git remote add ex1 https://github.com/catalyst-training/example1.git
@@ -1514,7 +1521,7 @@
 						* If there were conflicts, we could resolve them, or put the
 						projects into subdirs first
 
-						* We could have used the directory /tmp/example1/.git as the URL
+						* We could have used the directory /c/example1/.git as the URL
 						  for ex1 - that would have allowed us to include our bugfix
 						  into the merge
 						* We still could!, and we could then cherry-pick our bugfix in!
@@ -1545,9 +1552,9 @@
 
 						I'll get you started...
 						```bash
-						$ cd /tmp
+						$ cd /c
 						$ git clone https://github.com/YOURNAME/example3.git
-						$ cd /tmp/example3
+						$ cd /c/example3
 						$ echo 'Sean Connery' > $YOURNAME.txt
 						$ git gui
 						```
@@ -1604,7 +1611,7 @@
 						branch...
 						```bash
 						# Create a conflict
-						$ cd /tmp/example2
+						$ cd /c/example2
 						$ git merge origin/kittens
 						$ git status
 						```
@@ -1627,7 +1634,7 @@
 						branch...
 						```bash
 						# Create a conflict
-						$ cd /tmp/example2
+						$ cd /c/example2
 						$ git merge origin/kittens
 						$ git status
 						```
@@ -1648,7 +1655,7 @@
 						#### Throw away your changes
 						What if you make some changes, and you want to get back to safety?
 						```bash
-						$ cd /tmp/example2
+						$ cd /c/example2
 						$ echo 'A dragon will fix it' > lists/links.txt
 						$ rm lists/movies.txt
 						$ git status

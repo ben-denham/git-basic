@@ -95,59 +95,81 @@
 						* The tutorial is designed to uncover the concepts
 						* Not necessarily to provide all the command syntax
 						Note:
+						Most complex things in git are just
+						a convenient combination of simple things.
 						Hopefully if you are armed with the concepts, the
-						internet will help you find the specifics you need
+						internet will help you find the specifics you need.
 					</section>
 				</section>
 
 				<section> <!-- Why -->
 					<section data-markdown data-separator-notes="^Note:">
-						### Why use revision control software?
-						You (should) want it if...
+						### What is Git?
 
-						* You are sick of keeping *.bak files
-						* You want to look at how something used to be
-						* You want to know why something changed
-						* You want to review what you have just changed
+						* A tool for recording the history of changes made to files.
+						* Any kind of files!
+						* Most commonly used for managing source code.
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
-						### Why use revision control software?
-						You need it if...
+						## Why use Git?
+					</section>
+					<section data-markdown data-separator-notes="^Note:">
+						### 1. Keep backups of your files.
 
-						* You are working with other people who use it
-						* You want to maintain multiple versions of the same thing
-						* You need to make a single change which covers several files - and keep things in sync
+						With Git, you can keep rolling backups of your project files.
+
+						You can revert back to a previous version at any time.
+
+						You can go ahead and make lots of experimental changes, knowing a stable version of your code is safely recorded.
+					</section>
+					<section>
+					    <img src="images/backups.gif" style="min-height: 500px;"/>
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
-						### What does revision control provide?
-						* Track changes (to almost anything)
-						* View history
-						* Look back to find when bugs were created
-						* Find the reasoning behind why something is how it is
-						* Roll back changes
-						* Apply kudos for effort
-						* Backups of your important stuff
+						### 2. Facilitate collaboration
+
+						You can share files with your team or a even wider community with Git.
+
+						Team members can edit files independently and at the same time, then combine their changes later.
+					</section>
+					<section>
+					    <img src="images/collaboration.gif" style="min-height: 500px;"/>
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
-						### What options are there?
+						### 3. Track file history
+
+						Every time a change is recorded in Git, the date, author, and a description of changes is recorded.
+
+						So you can:
+
+						* Find out *when* the code was broken.
+						* Find out *who* broke the code.
+						* Find out *why* they broke they code.
+					</section>
+					<section data-markdown data-separator-notes="^Note:">
+						### Alternatives to Git?
+
+						Git is known as a version control system (VCS), and there are many others:
+
 						* RCS
 						* CVS
-						* Subversion
+						* Subversion (SVN)
 						* Darcs
 						* Perforce
-						* Bzr
+						* Bazaar
+						* Mercurial
 						* ...
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
-						### Why should you use Git?
+						### Reasons to use Git?
+
+						* **It is currently the most popular VCS**
 						* It is fast
-						* Branching is trivial
-						* Merging of branches actually makes sense
+						* Branching and merging is trivial
 						* You can be disconnected from the network, yet still continue working
 						* It does not dictate your workflow
 						* [It protects your data](http://git-scm.com/about/info-assurance)
 						* Once you master the concepts, you can do some really creative (and useful!) stuff
-						* The cool kids use it
 					</section>
 				</section>
 

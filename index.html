@@ -93,7 +93,7 @@
 						  (with some lecturing thrown in)
 						* The tutorial is based on the commandline
 						* The tutorial is designed to uncover the concepts
-						* Not necessarily to provide all the command syntax
+						* Not to provide all the command syntax
 						Note:
 						Most complex things in git are just
 						a convenient combination of simple things.
@@ -178,7 +178,7 @@
 						### Installing
 						```bash
 						# Required
-						$ sudo apt-get install install git
+						$ sudo apt-get install git
 						```
 						```bash
 						# Recommended
@@ -195,6 +195,18 @@
 						* Find the [Download link](http://git-scm.com/downloads "install instructions")
 						* Follow the instructions for your OS
 						* For MS Win, you should probably choose "Git BASH" when installing
+					</section>
+					<section data-markdown data-separator-notes="^Note:">
+						### Getting help
+						```bash
+						# git help COMMAND
+						$ git help status
+
+						# man git-COMMAND
+						$ man git-status
+						```
+						Note:
+						The COMMANDs we have used so far are 'init' and 'status', so....
 					</section>
 				</section>
 
@@ -224,24 +236,27 @@
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
 						### What did that do?
+
+						```bash
+						ls -a
+						# .git
+						```
+
 						Git is just a bit different from other revision control systems
 						![overview](images/local-remote-small.png "overview")
 
 						Note:
+
 						The 'staging area' is often called the 'index'
 						We refer to the 'working directory' as what we have 'checked out'
-					</section>
-					<section data-markdown data-separator-notes="^Note:">
-						### Getting help
-						```bash
-						# git help COMMAND
-						$ git help status
 
-						# man git-COMMAND
-						$ man git-status
-						```
-						Note:
-						The COMMANDs we have used so far are 'init' and 'status', so....
+						Some VC's don't make a distinction between local and remote.
+
+						Draw diagram (we'll come back to it often):
+
+						* Working directory - you know this
+						* Repo - The series of snapshots/commits that Git keeps. If changes are in here, they are safe.
+						* Staging area - You can choose what you want to commit. E.g. working on many issues. Craft your commits.
 					</section>
 				</section>
 
@@ -260,8 +275,11 @@
 						```
 						```bash
 						# If you will be working on windows, but need to deal with unix
+						# NOTE: You only need this on Windows.
 						$ git config --global core.autocrlf true
 						```
+						Note:
+						You can use tab to autocomplete in bash.
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
 						### Project configuration settings
@@ -662,7 +680,7 @@
 					<section data-markdown data-separator-notes="^Note:">
 						### Branches
 
-						* Branches are useful for tyring experimental changes or refactoring without affecting your main branch.
+						* Branches are useful for trying experimental changes or refactoring without affecting your main branch.
 						* Many (most) projects have a branch for each release
 						* Branches happen (without even trying) when several people try
 						  to work on the same project - but I'll explain that soon ;)
@@ -1106,8 +1124,9 @@
 					<section data-markdown data-separator-notes="^Note:">
 						### Now we can try it out
 						```bash
+						$ touch .git/git-daemon-export-ok
 						# Set up an alias once to be able to serve your repo on the network.
-						$ git config --global alias.serve "daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/"
+						$ git config --global alias.serve "daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths --enable=receive-pack .git/"
 						# Serve your repo.
 						$ git serve
 						```

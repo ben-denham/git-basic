@@ -178,15 +178,11 @@
 						### Installing
 						```bash
 						# Required
-						$ sudo aptitude install git
+						$ sudo apt-get install install git
 						```
 						```bash
 						# Recommended
-						$ sudo aptitude install gitk git-gui
-						```
-						```bash
-						# FYI...
-						$ sudo aptitude search git
+						$ sudo apt-get install gitk git-gui
 						```
 						Note:
 						Pause here to explain the way we are showing commands
@@ -197,8 +193,8 @@
 						### Installing (alternative OS)
 						* Go to [git-scm.org](http://git-scm.org "The home of git")
 						* Find the [Download link](http://git-scm.com/downloads "install instructions")
-						* Follow the intrsuctions for your OS
-						* For MS Win, you are looking for "Git BASH"
+						* Follow the instructions for your OS
+						* For MS Win, you should probably choose "Git BASH" when installing
 					</section>
 				</section>
 
@@ -207,10 +203,10 @@
 						### Create a new repository
 						```git init```
 						```bash
-						$ mkdir /tmp/test
+						$ mkdir test
 						```
 						```bash
-						$ cd /tmp/test
+						$ cd test
 						```
 						```bash
 						$ git init
@@ -233,6 +229,7 @@
 
 						Note:
 						The 'staging area' is often called the 'index'
+						We refer to the 'working directory' as what we have 'checked out'
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
 						### Getting help
@@ -275,7 +272,7 @@
 						Note:
 						These settings will override the global settings
 
-						- but only within the current repository (which is /tmp/test)
+						- but only within the current repository (which is test)
 					</section>
 					<section data-markdown data-separator-notes="^Note:">
 						### Accessing the configuration settings
@@ -289,7 +286,8 @@
 						```
 						```bash
 						# ..or just edit the files
-						$ gedit ~/.gitconfig /tmp/test/.git/config
+						$ gedit ~/.gitconfig
+						$ gedit test/.git/config
 						```
 					</section>
 				</section>
@@ -545,7 +543,9 @@
 
 						Often people use this functionality to mark release points.
 						```bash
+						# Lightweight tag
 						$ git tag v1.0
+						# Annotated tag
 						$ git tag v1.0-production -m 'this might be important later!'
 						```
 						```bash
@@ -592,7 +592,7 @@
 						### Change Logs
 						```bash
 						# You can change the output format
-						$ git log --prety=onleline
+						$ git log --prety=oneline
 						```
 						```bash
 						# Or specify which file or directory you are interested in
@@ -649,14 +649,26 @@
 					</section>
 					<section>
 						<h3>Commits are....</h3>
-						<marquee style="width:650" scrollamount="650" scrolldelay="500">Totally unchangeable</marquee>
+						<marquee style="width:650" scrollamount="650" scrolldelay="2750">Totally unchangeable!</marquee>
 						<aside class="notes">
-						This means that once you have committed your work, it is really safe
+						This means that once you have committed your work, it is really safe.
+
+						There are commands that look like they are changing commits, but they are really creating new commits.
 						</aside>
 					</section>
 				</section>
 
 				<section> <!-- branching and merging -->
+					<section data-markdown data-separator-notes="^Note:">
+						### Branches
+
+						* Branches are useful for tyring experimental changes or refactoring without affecting your main branch.
+						* Many (most) projects have a branch for each release
+						* Branches happen (without even trying) when several people try
+						  to work on the same project - but I'll explain that soon ;)
+
+						Think of a branch as a "movable pointer" to a specific commit.
+					</section>
 					<section data-markdown data-separator-notes="^Note:">
 						### Branching - List
 						To show branches use ```git branch```
@@ -666,9 +678,12 @@
 						```
 						Only one branch, called ```master```
 
-						The '*' indicates that it is your current branch
+						The '*' indicates that it is your current branch: The branch that is "checked out".
+
+						Each local repo has a special pointer called HEAD, which points to the currently checked out branch.
 						Note:
 						You can also use 'git status'
+						It is useful to think of branches as an 'alternative reality'
 					</section>
 
 					<section data-markdown data-separator-notes="^Note:">
@@ -686,7 +701,7 @@
 						```
 						Note:
 						mention that 'git checkout' is a convenience interface
-						...it does several things in one step
+						...it does several things in one step.
 					</section>
 
 					<section data-markdown data-separator-notes="^Note:">
@@ -756,18 +771,6 @@
 						DATA
 						```
 					</section>
-
-					<section data-markdown data-separator-notes="^Note:">
-						### Branching - Why?
-						* Many (most) projects have a branch for each release
-						* Branches are useful for experimental features / refactoring
-						* Branches happen (without even trying) when several people try
-						  to work on the same project - but I'll explain that soon ;)
-
-						Note:
-						It is useful to think of branches as an 'alternative reality'
-					</section>
-
 					<section data-markdown data-separator-notes="^Note:">
 						### Merging - Simple Case
 						You should now be on the master branch
@@ -913,7 +916,7 @@
 				<section>
 					<section data-markdown data-separator-notes="^Note:">
 						### Creating Repositories - Revisited
-						We already know how to create a new repositry
+						We already know how to create a new repository
 						```bash
 						$ git init
 						Initialized empty Git repository in .git/
@@ -926,9 +929,7 @@
 
 						To check out the source code of a random project:
 						```bash
-						$ cd /tmp
-						```
-						```bash
+						$ cd ~
 						$ git clone https://github.com/catalyst-training/git-basic
 						Cloning into git-basic...
 						remote: Counting objects: 90, done.
@@ -982,7 +983,7 @@
 						You can see all branches (including the remote ones) with the
 						```git branch``` command
 						```bash
-						$ cd /tmp/git-basic/
+						$ cd git-basic/
 						$ git branch -a
 						* master
 						  remotes/origin/master
@@ -1105,19 +1106,39 @@
 					<section data-markdown data-separator-notes="^Note:">
 						### Now we can try it out
 						```bash
-						# Clone a new repository
-						$ cd /tmp
-						$ git clone $IP:/tmp/test3.git
-						$ cd /tmp/test3
+						# Set up an alias once to be able to serve your repo on the network.
+						$ git config --global alias.serve "daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/"
+						# Serve your repo.
+						$ git serve
 						```
 						```bash
-						# Create a new file (and commit)
+						# In a new terminal.
+						# Find your IP address to give your neighbour.
+						$ ifconfig # Look for something like "inet addr:10.255.100.158"
+						# Clone your neighbour's repository.
+						$ cd ~
+						$ git clone git://$neighbour_ip/ test3
+						```
+						```bash
+						# Update your own repository (after your neighbour has cloned it).
+						$ cd ~/test
+						$ gedit $YOURNAME.txt
+						$ git add $YOURNAME.txt
+						$ git commit
+						```
+					</section>
+
+					<section data-markdown data-separator-notes="^Note:">
+						### Now we can try it out
+						```bash
+						# Create a new file and commit in your cloned repository
+						$ cd ~/test3
 						$ gedit $YOURNAME.txt
 						$ git add $YOURNAME.txt
 						$ git commit
 						```
 						```bash
-						# Push your changes to the shared repository
+						# Try to push your changes to your neighbour's repository
 						$ git push origin master
 						```
 						```bash
@@ -1438,9 +1459,9 @@
 						#### Solution
 						```bash
 						# Clone the repository
-						$ cd /tmp
+						$ cd ~
 						$ git clone https://github.com/catalyst-training/example1.git
-						$ cd /tmp/example1
+						$ cd example1
 
 						# Make a new branch (at the point we want to change)
 						$ git checkout -b release-1 release-1-0
@@ -1475,9 +1496,9 @@
 						####	Solution
 						```bash
 						# Clone the repository
-						$ cd /tmp
+						$ cd ~
 						$ git clone https://github.com/catalyst-training/example2.git
-						$ cd /tmp/example2
+						$ cd example2
 						```
 						```bash
 						# Work out what we want to do
@@ -1537,7 +1558,7 @@
 						### Problem 3
 						####	Solution
 						```bash
-						$ cd /tmp/example2
+						$ cd ~/example2
 
 						# Add another remote!
 						$ git remote add ex1 https://github.com/catalyst-training/example1.git
@@ -1586,9 +1607,9 @@
 
 						I'll get you started...
 						```bash
-						$ cd /tmp
+						$ cd ~
 						$ git clone https://github.com/YOURNAME/example3.git
-						$ cd /tmp/example3
+						$ cd example3
 						$ echo 'Sean Connery' > $YOURNAME.txt
 						$ git gui
 						```
@@ -1645,7 +1666,7 @@
 						branch...
 						```bash
 						# Create a conflict
-						$ cd /tmp/example2
+						$ cd ~/example2
 						$ git merge origin/kittens
 						$ git status
 						```
@@ -1668,7 +1689,7 @@
 						branch...
 						```bash
 						# Create a conflict
-						$ cd /tmp/example2
+						$ cd ~/example2
 						$ git merge origin/kittens
 						$ git status
 						```
@@ -1679,6 +1700,7 @@
 						####	Solution
 						```bash
 						# Let's give it a go...
+						$ sudo apt-get install meld
 						$ git mergetool
 						```
 						Note:

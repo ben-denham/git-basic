@@ -275,8 +275,9 @@
 						```
 						```bash
 						# If you will be working on windows, but need to deal with unix
-						# NOTE: You only need this on Windows.
-						$ git config --global core.autocrlf true
+						# NOTE: You only need these on Windows.
+						$ git config --global core.autocrlf true # Convert Windows line endings to Unix line endings in Git.
+						$ git config --global core.longpaths true # Makes it possible to work on repositories with filenames that exceed Windows limits.
 						```
 						Note:
 						You can use tab to autocomplete in bash.
